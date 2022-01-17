@@ -1,0 +1,401 @@
+import java.util.Random;
+import java.util.Scanner;
+
+public class JogoDaVelha {
+    public static void main(String[] args) {
+     Scanner entrada = new Scanner(System.in);
+     String a="a",b="b",c="c",d="d",e="e",f="f",g="g",h="h",i="i",X="X",O="O",v,pc="O";
+     int flag=0;
+     int fim=1;
+     Random random = new Random();
+
+     
+     
+     
+  ////criei matriz
+     
+     String Matriz[][] = new String[3][3];
+        Matriz[0][0] = a;
+        Matriz[0][1] = b;
+        Matriz[0][2] = c;
+        Matriz[1][0] = d;
+        Matriz[1][1] = e;
+        Matriz[1][2] = f;
+        Matriz[2][0] = g;
+        Matriz[2][1] = h;
+        Matriz[2][2] = i;
+       
+////comecei o laço        
+        while(fim!=2 || fim!=3 || fim!=4){
+         if(Matriz[0][0].equals(X) && Matriz[0][1].equals(X) && Matriz[0][2].equals(X) || 
+           Matriz[0][0].equals(X) && Matriz[1][0].equals(X) && Matriz[2][0].equals(X) ||
+           Matriz[0][1].equals(X) && Matriz[1][1].equals(X) && Matriz[2][1].equals(X) ||
+           Matriz[0][2].equals(X) && Matriz[1][2].equals(X) && Matriz[2][2].equals(X) ||
+           Matriz[1][0].equals(X) && Matriz[1][1].equals(X) && Matriz[1][2].equals(X) ||
+           Matriz[2][0].equals(X) && Matriz[2][1].equals(X) && Matriz[2][2].equals(X) ||
+           Matriz[0][0].equals(X) && Matriz[1][1].equals(X) && Matriz[2][2].equals(X) ||
+           Matriz[0][2].equals(X) && Matriz[1][1].equals(X) && Matriz[2][0].equals(X)){
+           fim=2;
+           break;
+         }
+         
+         if(Matriz[0][0].equals(O) && Matriz[0][1].equals(O) && Matriz[0][2].equals(O) || 
+           Matriz[0][0].equals(O) && Matriz[1][0].equals(O) && Matriz[2][0].equals(O) ||
+           Matriz[0][1].equals(O) && Matriz[1][1].equals(O) && Matriz[2][1].equals(O) ||
+           Matriz[0][2].equals(O) && Matriz[1][2].equals(O) && Matriz[2][2].equals(O) ||
+           Matriz[1][0].equals(O) && Matriz[1][1].equals(O) && Matriz[1][2].equals(O) ||
+           Matriz[2][0].equals(O) && Matriz[2][1].equals(O) && Matriz[2][2].equals(O) ||
+           Matriz[0][0].equals(O) && Matriz[1][1].equals(O) && Matriz[2][2].equals(O) ||
+           Matriz[0][2].equals(O) && Matriz[1][1].equals(O) && Matriz[2][0].equals(O)){
+           fim=3;
+           break;
+         }
+         
+         if(!Matriz[0][0].equals(a) && !Matriz[0][1].equals(b) && !Matriz[0][2].equals(c) && 
+            !Matriz[1][0].equals(d) && !Matriz[1][1].equals(e) && !Matriz[1][2].equals(f) &&
+            !Matriz[2][0].equals(g) && !Matriz[2][1].equals(h) && !Matriz[2][2].equals(i)) {
+                 fim=4;
+                 break;
+               }
+         
+         
+         
+         for (int linha = 0; linha < 3; linha++){
+
+          for( int coluna = 0; coluna < 3; coluna++){
+           System.out.printf(" %s",Matriz[linha][coluna]);
+           if(coluna<2) {
+            System.out.print(" |");
+           }
+          }
+
+          System.out.println();
+
+          if(linha<2) {
+           System.out.print("---+---+---");
+          }
+          System.out.println();
+         }
+        
+        
+////// JOGADA DO USUÁRIO
+
+
+         System.out.print("Jogada do usuário: \n");
+         v=entrada.next();
+         System.out.println("");
+         
+         while (flag==0){
+             for (int linha = 0; linha < 3; linha++){
+                 for( int coluna = 0; coluna < 3; coluna++){
+                 
+                	 if(Matriz[linha][coluna].equals(v)) {
+                		 flag=1;
+                	 }
+                 }
+
+             }
+             
+             if(flag==0) {
+            	 System.out.print("Digite uma letra que ainda não foi usada. Jogada do usuário: \n");
+            	 v=entrada.next();
+            	 System.out.println("");
+
+             }
+         }
+         flag=0;
+         
+      ///procura o valor
+            for (int linha = 0; linha < 3; linha++){
+             for( int coluna = 0; coluna < 3; coluna++){
+             
+              if(Matriz[linha][coluna].equals(v)) {
+               Matriz[linha][coluna]=X;
+              }
+             }
+            }
+            
+     /////imprime resposta
+            
+            for (int linha = 0; linha < 3; linha++){
+
+           	 for( int coluna = 0; coluna < 3; coluna++){
+           		 System.out.printf(" %s",Matriz[linha][coluna]);
+           		 if(coluna<2) {
+           			 System.out.print(" |");
+           		 }
+           	 }
+
+           	 System.out.println();
+
+           	 if(linha<2) {
+           		 System.out.print("---+---+---");
+           	 }
+           	 System.out.println();
+            }
+           
+            if(Matriz[0][0].equals(X) && Matriz[0][1].equals(X) && Matriz[0][2].equals(X) || 
+                    Matriz[0][0].equals(X) && Matriz[1][0].equals(X) && Matriz[2][0].equals(X) ||
+                    Matriz[0][1].equals(X) && Matriz[1][1].equals(X) && Matriz[2][1].equals(X) ||
+                    Matriz[0][2].equals(X) && Matriz[1][2].equals(X) && Matriz[2][2].equals(X) ||
+                    Matriz[1][0].equals(X) && Matriz[1][1].equals(X) && Matriz[1][2].equals(X) ||
+                    Matriz[2][0].equals(X) && Matriz[2][1].equals(X) && Matriz[2][2].equals(X) ||
+                    Matriz[0][0].equals(X) && Matriz[1][1].equals(X) && Matriz[2][2].equals(X) ||
+                    Matriz[0][2].equals(X) && Matriz[1][1].equals(X) && Matriz[2][0].equals(X)){
+                    fim=2;
+                    break;
+                  }
+            
+            if(!Matriz[0][0].equals(a) && !Matriz[0][1].equals(b) && !Matriz[0][2].equals(c) && 
+                    !Matriz[1][0].equals(d) && !Matriz[1][1].equals(e) && !Matriz[1][2].equals(f) &&
+                    !Matriz[2][0].equals(g) && !Matriz[2][1].equals(h) && !Matriz[2][2].equals(i)) {
+                         fim=4;
+                         break;
+                       }
+            
+    /// jogada do computador   
+            
+            System.out.print("Jogada do computador: \n");
+            
+            
+            ////preenche para ganhar
+        if (Matriz[0][0].equals(O) && Matriz[0][1].equals(O) && !Matriz[0][2].equals(X)) {
+        	Matriz[0][2]=O;
+        }else if(Matriz[0][0].equals(O) && Matriz[0][2].equals(O) && !Matriz[0][1].equals(X))  {
+        	Matriz[0][1]=O;
+        }else if(Matriz[0][1].equals(O) && Matriz[0][2].equals(O) && !Matriz[0][0].equals(X))  {
+        	Matriz[0][0]=O;
+        
+        }else if(Matriz[1][0].equals(O) && Matriz[1][1].equals(O) && !Matriz[1][2].equals(X)) {
+        	Matriz[1][2]=O;
+        }else if(Matriz[1][1].equals(O) && Matriz[1][2].equals(O) && !Matriz[1][0].equals(X))  {
+            Matriz[1][0]=O;
+        }else if(Matriz[1][0].equals(O) && Matriz[1][2].equals(O) && !Matriz[1][1].equals(X))  {
+            Matriz[1][1]=O;
+        	
+        }else if(Matriz[2][0].equals(O) && Matriz[2][1].equals(O) && !Matriz[2][2].equals(X))  {
+        	Matriz[2][2]=O;
+        }else if(Matriz[2][0].equals(O) && Matriz[2][2].equals(O) && !Matriz[2][1].equals(X))  {
+            Matriz[2][1]=O;
+        }else if(Matriz[2][1].equals(O) && Matriz[2][2].equals(O) && !Matriz[2][0].equals(X))  {
+            Matriz[2][0]=O;
+            
+        }else if(Matriz[0][0].equals(O) && Matriz[1][0].equals(O) && !Matriz[2][0].equals(X))  {
+        	Matriz[2][0]=O;
+        }else if(Matriz[0][0].equals(O) && Matriz[2][0].equals(O) && !Matriz[1][0].equals(X))  {
+            Matriz[1][0]=O;
+        }else if(Matriz[1][0].equals(O) && Matriz[2][0].equals(O) && !Matriz[0][0].equals(X))  {
+            Matriz[0][0]=O;
+            
+        	            	
+        }else if(Matriz[0][1].equals(O) && Matriz[1][1].equals(O) && !Matriz[2][1].equals(X))  {
+        	Matriz[2][1]=O;
+        }else if(Matriz[0][1].equals(O) && Matriz[2][1].equals(O) && !Matriz[1][1].equals(X))  {
+            	Matriz[1][1]=O;
+        }else if(Matriz[1][1].equals(O) && Matriz[2][1].equals(O) && !Matriz[0][1].equals(X))  {
+                Matriz[0][1]=O;
+        
+        	            	
+        }else if(Matriz[0][2].equals(O) && Matriz[1][2].equals(O) && !Matriz[2][2].equals(X))  {
+        	Matriz[2][2]=O;
+        }else if(Matriz[0][2].equals(O) && Matriz[2][2].equals(O) && !Matriz[1][2].equals(X))  {
+            	Matriz[1][2]=O;
+        }else if(Matriz[1][2].equals(O) && Matriz[2][2].equals(O) && !Matriz[0][2].equals(X))  {
+                Matriz[0][2]=O;
+                
+        }else if(Matriz[0][0].equals(O) && Matriz[1][1].equals(O) && !Matriz[2][2].equals(X)) {
+        	Matriz[2][2]=O;
+        }else if(Matriz[1][1].equals(O) && Matriz[2][2].equals(O) && !Matriz[0][0].equals(X)) {
+            	Matriz[0][0]=O;
+        }else if(Matriz[0][0].equals(O) && Matriz[2][2].equals(O) && !Matriz[1][1].equals(X)) {
+                Matriz[1][1]=O;
+                
+        }else if(Matriz[0][2].equals(O) && Matriz[1][1].equals(O) && !Matriz[2][0].equals(X)) {
+        	Matriz[2][0]=O;
+        }else if(Matriz[0][2].equals(O) && Matriz[2][0].equals(O) && !Matriz[1][1].equals(X)) {
+            	Matriz[1][1]=O;
+        }else if(Matriz[1][1].equals(O) && Matriz[2][0].equals(O) && !Matriz[0][2].equals(X)) {
+                Matriz[0][2]=O;
+                
+                ////// preenche para nao perder
+        }else if(Matriz[0][0].equals(X) && Matriz[0][1].equals(X) && !Matriz[0][2].equals(O)){
+            	Matriz[0][2]=O;
+            }else if(Matriz[0][0].equals(X) && Matriz[0][2].equals(X) && !Matriz[0][1].equals(O)) {
+            	Matriz[0][1]=O;
+            }else if(Matriz[0][1].equals(X) && Matriz[0][2].equals(X) && !Matriz[0][0].equals(O)) {
+            	Matriz[0][0]=O;
+            
+            }else if(Matriz[1][0].equals(X) && Matriz[1][1].equals(X) && !Matriz[1][2].equals(O)){
+            	Matriz[1][2]=O;
+            }else if(Matriz[1][1].equals(X) && Matriz[1][2].equals(X) && !Matriz[1][0].equals(O)) {
+                Matriz[1][0]=O;
+            }else if(Matriz[1][0].equals(X) && Matriz[1][2].equals(X) && !Matriz[1][1].equals(O)) {
+                Matriz[1][1]=O;
+            	
+            }else if(Matriz[2][0].equals(X) && Matriz[2][1].equals(X) && !Matriz[2][2].equals(O)) {
+            	Matriz[2][2]=O;
+            }else if(Matriz[2][0].equals(X) && Matriz[2][2].equals(X) && !Matriz[2][1].equals(O)) {
+                Matriz[2][1]=O;
+            }else if(Matriz[2][1].equals(X) && Matriz[2][2].equals(X) && !Matriz[2][0].equals(O)) {
+                Matriz[2][0]=O;
+                
+            }else if(Matriz[0][0].equals(X) && Matriz[1][0].equals(X) && !Matriz[2][0].equals(O)) {
+            	Matriz[2][0]=O;
+            }else if(Matriz[0][0].equals(X) && Matriz[2][0].equals(X) && !Matriz[1][0].equals(O)) {
+                Matriz[1][0]=O;
+            }else if(Matriz[1][0].equals(X) && Matriz[2][0].equals(X) && !Matriz[0][0].equals(O)) {
+                Matriz[0][0]=O;
+                
+            	            	
+            }else if(Matriz[0][1].equals(X) && Matriz[1][1].equals(X) && !Matriz[2][1].equals(O)) {
+            	Matriz[2][1]=O;
+            }else if(Matriz[0][1].equals(X) && Matriz[2][1].equals(X) && !Matriz[1][1].equals(O)) {
+                	Matriz[1][1]=O;
+            }else if(Matriz[1][1].equals(X) && Matriz[2][1].equals(X) && !Matriz[0][1].equals(O)) {
+                    Matriz[0][1]=O;
+            	
+            	            	
+            }else if(Matriz[0][2].equals(X) && Matriz[1][2].equals(X) && !Matriz[2][2].equals(O)) {
+            	Matriz[2][2]=O;
+            }else if(Matriz[0][2].equals(X) && Matriz[2][2].equals(X) && !Matriz[1][2].equals(O)) {
+                	Matriz[1][2]=O;
+            }else if(Matriz[1][2].equals(X) && Matriz[2][2].equals(X) && !Matriz[0][2].equals(O)) {
+                    Matriz[0][2]=O;
+                    
+            }else if(Matriz[0][0].equals(X) && Matriz[1][1].equals(X) && !Matriz[2][2].equals(O)) {
+            	Matriz[2][2]=O;
+            }else if(Matriz[1][1].equals(X) && Matriz[2][2].equals(X) && !Matriz[0][0].equals(O)) {
+                	Matriz[0][0]=O;
+            }else if(Matriz[0][0].equals(X) && Matriz[2][2].equals(X) && !Matriz[1][1].equals(O)) {
+                    Matriz[1][1]=O;
+                    
+            }else if(Matriz[0][2].equals(X) && Matriz[1][1].equals(X) && !Matriz[2][0].equals(O)) {
+            	Matriz[2][0]=O;
+            }else if(Matriz[0][2].equals(X) && Matriz[2][0].equals(X) && !Matriz[1][1].equals(O)) {
+                	Matriz[1][1]=O;
+            }else if(Matriz[1][1].equals(X) && Matriz[2][0].equals(X) && !Matriz[0][2].equals(O)) {
+                    Matriz[0][2]=O;
+            
+            
+            ///////////computador joga automatico
+            
+        	
+            	}else {
+            		int numeroInteiroAleatorio_0_a_8 = random.nextInt(8);
+            		if(numeroInteiroAleatorio_0_a_8==0) {
+            			pc="a";
+            		}else if (numeroInteiroAleatorio_0_a_8==1) {
+            			pc="b";
+            		}else if (numeroInteiroAleatorio_0_a_8==2) {
+            			pc="c";
+            		}else if (numeroInteiroAleatorio_0_a_8==3) {
+            			pc="d";
+            		}else if (numeroInteiroAleatorio_0_a_8==4) {
+            			pc="e";
+            		}else if (numeroInteiroAleatorio_0_a_8==5) {
+            			pc="f";
+            		}else if (numeroInteiroAleatorio_0_a_8==6) {
+            			pc="g";
+            		}else if (numeroInteiroAleatorio_0_a_8==7) {
+            			pc="h";
+            		}else if (numeroInteiroAleatorio_0_a_8==8) {
+            			pc="i";
+            		}
+            
+            	System.out.println("");
+            
+            	while (flag==0){
+            		for (int linha = 0; linha < 3; linha++){
+            			for( int coluna = 0; coluna < 3; coluna++){
+                    
+            				if(Matriz[linha][coluna].equals(pc)) {
+            					flag=1;
+            				}
+            			}
+            			
+            		}
+                
+            		if(flag==0) {
+            			numeroInteiroAleatorio_0_a_8 = random.nextInt(8);
+            			if(numeroInteiroAleatorio_0_a_8==0) {
+            				pc=a;
+            			}else if (numeroInteiroAleatorio_0_a_8==1) {
+                    		pc=b;
+            			}else if (numeroInteiroAleatorio_0_a_8==2) {
+            				pc=c;
+            			}else if (numeroInteiroAleatorio_0_a_8==3) {
+            				pc=d;
+            			}else if (numeroInteiroAleatorio_0_a_8==4) {
+            				pc=e;
+            			}else if (numeroInteiroAleatorio_0_a_8==5) {
+            				pc=f;
+            			}else if (numeroInteiroAleatorio_0_a_8==6) {
+            				pc=g;
+            			}else if (numeroInteiroAleatorio_0_a_8==7) {
+            				pc=h;
+            			}else if (numeroInteiroAleatorio_0_a_8==8) {
+            				pc=i;
+            			}
+            			System.out.println("");
+            			
+            		}
+            	}
+            }
+            flag=0;
+            
+         ///procura o valor
+               for (int linha = 0; linha < 3; linha++){
+            	   for( int coluna = 0; coluna < 3; coluna++){
+                
+            		   if(Matriz[linha][coluna].equals(pc)) {
+            			   Matriz[linha][coluna]=O;
+            			   if(!Matriz[0][0].equals(a) && !Matriz[0][1].equals(b) && !Matriz[0][2].equals(c) && 
+            					   !Matriz[1][0].equals(d) && !Matriz[1][1].equals(e) && !Matriz[1][2].equals(f) &&
+            					   !Matriz[2][0].equals(g) && !Matriz[2][1].equals(h) && !Matriz[2][2].equals(i)) {
+            				   	   fim=4;
+            				   	   break;
+                           }
+            		   }
+            	   }
+               }    
+            
+            
+
+ 
+        }            
+            
+            
+            
+///////////////imprime o final
+    
+
+        
+        
+     for (int linha = 0; linha < 3; linha++){
+
+    	 for( int coluna = 0; coluna < 3; coluna++){
+    		 System.out.printf(" %s",Matriz[linha][coluna]);
+    		 if(coluna<2) {
+    			 System.out.print(" |");
+    		 }
+    	 }
+
+    	 System.out.println();
+
+    	 if(linha<2) {
+    		 System.out.print("---+---+---");
+    	 }
+    	 System.out.println();
+     }
+     
+     if(fim==2) {
+    	 System.out.print("Parabéns você ganhou, bora mais uma? Reinicie o programa.");
+     }else if(fim==3) {
+    	 System.out.print("Que pena, o computador ganhou, reinicie o programa. Vamos tentar de novo?");
+     }else if(fim==4){
+    	 System.out.print("Parece que tivemos um empate,reinicie o programa. Hora do segundo tempo!!!");
+     }
+     
+   }
+
+}
